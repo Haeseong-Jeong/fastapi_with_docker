@@ -1,0 +1,41 @@
+https://github.com/playniuniu/docker-jupyter-pandas
+https://github.com/teddylee777/deepko/blob/7970c0d83f1fac643019ea9b2b1c0cbd44ff2afa/02-Customization/README.md
+
+
+
+### 이미지 파일 컨테이너로 생성 - 처음( -v [로컬 저장소 원하는 파일 경로]:/opt [이미지 이름])
+docker run -d --name jupyter -p 8888:8888 -v C:\Users\Sam\Documents\Docker_jupyter_workplace:/opt playniuniu/jupyter-pandas
+docker run -d --name jupyter -p 8888:8888 -v C:\Users\Sam\Documents\ds_study:/opt playniuniu/jupyter-pandas
+
+
+### 이미지 불러놓은 후 실행
+
+### 바인드 마운트 (로컬저장소를 컨테이너 저장소로 연동)
+-v C:\Users\Sam\Documents\Docker_jupyter_workplace:/opt playniuniu/jupyter-pandas
+
+### 컨테이너 종료
+docker stop [container ID]
+docker container stop 4279beb2fe1e
+
+
+### 로컬 주피터 경로
+http://localhost:8888
+
+
+### 아나콘다 환경으로 추출 및 도커 환경 구성
+https://pythonspeed.com/articles/activate-conda-dockerfile/
+https://blockchainstudy.tistory.com/54
+
+추출 할때 1. --no-builds
+2. sed 's/\(.*[[:alnum:]]\)=[[:alnum:]][[:alnum:].-_]*/\1/' environment.yml > env.yml
+
+해야 버전 및 버전 종속 
+
+-> 이미지 빌드
+-f 참고 도커파일
+-t 내도커계정명/원하는이미지파일명:원하는태그명
+docker build -f gpu.Dockerfile -t jeonghaeseong/DLenv:latest .
+
+### 이미지를 컨테이너로 실행 ( 바인드 마운트로 저장소 연결  하면 될 듯)
+
+https://davidrpugh.github.io/stochastic-expatriate-descent/python/conda/docker/data-science/2020/03/31/poor-mans-repo2docker.html

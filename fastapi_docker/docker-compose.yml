@@ -1,0 +1,26 @@
+#services:
+#  back_end:
+#    build:
+#      context: .
+#      dockerfile : .
+#    ports:
+#      - 8080:8000
+#  database:
+#    build:
+#      context: .
+#      dockerfile : .
+#    ports:
+#      - 3000:3000
+
+# volumns에서는 app폴더에서 수정이 이뤄지면 컨테이너 code/app에도 연결되어 반영되게하기 위해 ./app:/code/app으로 설정한다.
+
+version: "3.7"
+
+services:
+  fastapi:
+    image: fastapi:0.1
+    command: uvicorn app.main:app --host 0.0.0.0 --port 8080 --reload
+    ports:
+      - 8080:8080
+    volumes:
+      - ./app:/code/app
